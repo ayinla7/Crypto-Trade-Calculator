@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRADE CALCULATOR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/crypto.jpg" type="image/icon type">
+</head>
+<body>
+    <div id="cendiv">
+        <div id="info" style="align-items: right;">
+
+            <h1 id="head">TRADE CALCULATOR</h1>
+            
+            <img id="logo" src="/crypto.jpg" />
+            <p>Profits or Losses calculates the amount of profit or loss the trades will make  <br>
+                you using Dollar (USD) as Fiat.</p>
+            
+            <br>
+            <label for="box1" >Gas fees (%):</label> 
+            <input type="number" name="fee" id="box1">
+            <br>
+            <br>
+        
+            <label for="box2">Number of coin (฿):</label> 
+            <input type="number" name="coin" id="box2">
+            <br>
+            <br>
+        
+            <label for="box3">Entry Price ($):</label> 
+            <input type="number" name="entry" id="box3" >
+            <br>
+            <br>
+
+            <label for="box3">Selling Price ($):</label> 
+            <input type="number" name="selling" id="box4" >
+            <br>
+            <br>
+            <label for="pTotal">PnL Percentage(%):</label>
+            <h3 id="pTotal"></h3>
+            <br>
+            <br>
+
+            <label for="Total">PnL Total($) :</label> 
+            <h3 id="Total"></h3>
+            <br>
+
+            <button onclick="press()">CALCULATE</button>
+        </div>
+    </div>
+    
+    <script>
+        function press(){
+        var f = Number(document.getElementById("box1").value) ;
+        var c = Number(document.getElementById("box2").value) ;
+        var e = Number(document.getElementById("box3").value) ;
+        var s = Number(document.getElementById("box4").value) ;
+
+
+         
+            var r; //rate in dollar
+
+            r=(((e*f)/100)+((s*f)/100));
+            var pnl =((s-e)-r)*c;
+
+            var total = pnl.toFixed(2);
+            var pTotal = (((s-e)/e)*100).toFixed(2);
+            
+        document.getElementById("Total").innerHTML = "$" + total.toString();
+        document.getElementById("pTotal").innerHTML = pTotal.toString() + "%";
+
+        if(total>=0){
+            document.getElementById("Total").style.color = "lime";
+        }else{
+            document.getElementById("Total").style.color = "red";
+
+        }
+        if(pTotal>=0){
+            document.getElementById("pTotal").style.color = "lime";
+        }else{
+            document.getElementById("pTotal").style.color = "red";
+
+        }
+        }
+       
+    </script>
+</body>
+</html>
